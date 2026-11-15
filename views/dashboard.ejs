@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Quản lý Kho QR</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: #f9f9f9; padding: 20px; border-radius: 8px; }
+        input { padding: 10px; width: 70%; margin-right: 10px; }
+        button { padding: 10px; background: #008CBA; color: white; border: none; cursor: pointer; }
+        .qr-result { margin-top: 20px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Hệ thống Quản lý Kho - Mã QR</h2>
+        <p>Chào mừng Admin! Hãy nhập mã sản phẩm để tạo tem QR dán lên kiện hàng.</p>
+        
+        <form action="/generate-qr" method="POST">
+            <input type="text" name="productCode" placeholder="Ví dụ: SP-001, LAPTOP-DELL..." required>
+            <button type="submit">Tạo mã QR</button>
+        </form>
+
+        <% if (typeof qrImage !== 'undefined' && qrImage) { %>
+            <div class="qr-result">
+                <h3>Mã QR cho sản phẩm: <%= productCode %></h3>
+                <img src="<%= qrImage %>" alt="QR Code" style="border: 1px solid #ccc; padding: 10px; background: white;">
+                <br>
+                <p><i>(Dùng điện thoại quét thử ngay!)</i></p>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>

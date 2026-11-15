@@ -64,7 +64,7 @@ app.get('/products', (req, res) => {
     });
 });
 
-// --- KHỞI ĐỘNG SERVER (Luôn nằm dưới cùng) ---
+// --- KHỞI ĐỘNG SERVER  ---
 app.listen(3000, () => {
     console.log('Server đang chạy tại http://localhost:3000');
 });

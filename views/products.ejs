@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Kho Hàng - Quản lý Kho QR</title>
+    <style>
+        table { width: 80%; margin: 20px auto; border-collapse: collapse; text-align: center; }
+        th, td { border: 1px solid #ccc; padding: 10px; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Danh Sách Tồn Kho</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Mã Sản Phẩm</th>
+            <th>Tên Sản Phẩm</th>
+            <th>Số Lượng (Tồn)</th>
+            <th>Thao tác</th>
+        </tr>
+        <% products.forEach(function(product) { %>
+        <tr>
+            <td><%= product.id %></td>
+            <td><strong><%= product.product_code %></strong></td>
+            <td><%= product.name %></td>
+            <td><%= product.quantity %></td>
+            <td>
+                <form action="/generate-qr" method="POST" style="margin: 0;">
+                    <input type="hidden" name="productCode" value="<%= product.product_code %>">
+                    <button type="submit">In mã QR</button>
+                </form>
+            </td>
+        </tr>
+        <% }); %>
+    </table>
+    <div style="text-align: center;">
+        <a href="/dashboard">Quay lại Dashboard</a>
+    </div>
+</body>
+</html>

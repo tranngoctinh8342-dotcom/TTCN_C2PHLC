@@ -55,6 +55,14 @@ app.post('/generate-qr', async (req, res) => {
         res.send('Lỗi khi tạo mã QR');
     }
 });
+// --- API 3: HIỂN THỊ DANH SÁCH SẢN PHẨM ---
+app.get('/products', (req, res) => {
+    const query = 'SELECT * FROM products';
+    db.query(query, (err, results) => {
+        if (err) throw err;
+        res.render('products', { products: results }); // Đẩy danh sách ra giao diện
+    });
+});
 
 // --- KHỞI ĐỘNG SERVER (Luôn nằm dưới cùng) ---
 app.listen(3000, () => {
